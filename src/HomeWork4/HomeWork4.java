@@ -54,14 +54,13 @@ public class HomeWork4 {
         }
 
         System.out.printf("Total time for all task execution is %d", total);
-
         System.out.println("Do you need extra data? Y/N");
         extra = sc.nextLine();
         if (extra.equals("Y")) {
-            System.out.println("Please desired priority. If you want to skip enter any value except priority");
+            System.out.println("Please desired priority. If you want to skip, enter any value except priority");
             priority = sc.nextLine();
             System.out.println("Please enter desired amount of days for task execution");
-            System.out.println("If you want to skip enter any value except integer number of days");
+            System.out.println("If you want to skip, enter any value except integer number of days");
             days = sc.nextLine();
             sc.close();
 
@@ -73,7 +72,7 @@ public class HomeWork4 {
             for (String task: tasks.keySet()) {
                 if (tasks.get(task).equals(priority)) {
                     counter++;
-                };
+                }
             }
             System.out.printf("Total amount of %s priority tasks is %d", priority, counter);
         }
@@ -85,21 +84,68 @@ public class HomeWork4 {
                 ex.printStackTrace();
         }
 
-        if (hours > 0) {
-            int highTask = 0, medTsk = 0, lowTask = 0;
-
-            if (highCounter * 4 + medCounter * 2 + lowCounter * 1 <= hours) {
-                System.out.println("All tasks can be done in entered period");
-            }
-
-            else {
-
-            }
-
-            }
-
-        
+        System.out.println(taskCheck(hours, highCounter, medCounter, lowCounter));
     }
+
+    public static String taskCheck (int hours, int highCounter, int medCounter, int lowCounter) {
+        String returnString = "";
+        int mod, rest;
+
+        if (hours <= 0) {
+            returnString = "No tasks are possible to execute";
+            return returnString;
+        } else if (highCounter * 4 + medCounter * 2 + lowCounter <= hours) {
+            returnString = "All tasks can be done in entered period";
+            return returnString;
+        } else {
+            rest = hours - (4 * highCounter);
+            if (rest == 0) {
+                returnString = "Available hours allows execute " + rest + "tasks with \"High\" priority only.";
+                return returnString;
+            }
+            if (rest > 0) {
+                returnString = "Available time allows to execute " + rest + " tasks with \"High\" priority ";
+                hours -= highCounter * 4;
+            }
+
+            if (rest < 0) {
+                
+            }
+
+
+
+            return returnString;
+        }
+
+
+            /*int rest = 0;
+
+        int highRest, midRest;
+
+         else {
+            highRest = hours - hours / (4 * highCounter);
+            if (highRest == 0) {
+                rest = hours / 4;
+
+
+            }
+
+
+            hours -= rest * 4;
+            midRest = hours - hours/(2 * medCounter);
+            if (midRest == 0) {
+                rest = hours/2;
+                returnString += "and " + rest + " tasks with \"Medium\" priority.";
+                return returnString;
+            }
+
+           // returnString +=", " +  rest + " tasks with \"Medium\" priority";
+            //rest =
+            return "0";
+
+        }*/
+    }
+
 
 
 }
