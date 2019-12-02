@@ -53,11 +53,11 @@ public class HomeWork4 {
             total += tasks.get(task);
         }
 
-        System.out.printf("Total time for all task execution is %d", total);
+        System.out.printf("Total time for all task execution is %d \n", total);
         System.out.println("Do you need extra data? Y/N");
         extra = sc.nextLine();
         if (extra.equals("Y")) {
-            System.out.println("Please desired priority. If you want to skip, enter any value except priority");
+            System.out.println("Please choose desired priority. If you want to skip, enter any value except priority");
             priority = sc.nextLine();
             System.out.println("Please enter desired amount of days for task execution");
             System.out.println("If you want to skip, enter any value except integer number of days");
@@ -67,14 +67,14 @@ public class HomeWork4 {
         }
 
         if (priority.equals("High")||priority.equals("Medium")|| priority.equals("Low")){
-            //or just use highCounter :)
-            int counter = 0;
-            for (String task: tasks.keySet()) {
-                if (tasks.get(task).equals(priority)) {
-                    counter++;
-                }
-            }
-            System.out.printf("Total amount of %s priority tasks is %d", priority, counter);
+            int counter;
+            if (priority.equals("High")) {counter = highCounter;}
+            else if (priority.equals("Medium")) {counter = medCounter;}
+            else {counter = lowCounter;}
+            System.out.printf("Total amount of %s priority tasks is %d \n", priority, counter);
+        }
+        else {
+            System.out.println("Calculation of tasks with particular priority is skipped.");
         }
 
         try {
@@ -98,52 +98,36 @@ public class HomeWork4 {
             returnString = "All tasks can be done in entered period";
             return returnString;
         } else {
-            rest = hours - (4 * highCounter);
-            if (rest == 0) {
-                returnString = "Available hours allows execute " + rest + "tasks with \"High\" priority only.";
+            rest = taskCalc(hours, highCounter, 4);
+            returnString = "Desired period allows to execute " + rest + "tasks with \"High\" priority " +
+                    "(from"+ highCounter +"according to scgedule)";
+            hours -= highCounter * 4;
+            if (hours == 0) {
                 return returnString;
             }
-            if (rest > 0) {
-                returnString = "Available time allows to execute " + rest + " tasks with \"High\" priority ";
-                hours -= highCounter * 4;
+            rest = taskCalc(hours, medCounter, 2);
+            returnString += ",\n " + rest + "tasks with \"Medium\" priority (from"+ medCounter +"according to scgedule)";
+            hours -= medCounter * 2;
+            if (hours == 0) {
+                return returnString;
             }
-
-            if (rest < 0) {
-                
-            }
-
-
-
+            returnString +=" and " + hours + " tasks with \"Low\" priority";
             return returnString;
         }
 
 
-            /*int rest = 0;
 
-        int highRest, midRest;
+    }
 
-         else {
-            highRest = hours - hours / (4 * highCounter);
-            if (highRest == 0) {
-                rest = hours / 4;
-
-
-            }
-
-
-            hours -= rest * 4;
-            midRest = hours - hours/(2 * medCounter);
-            if (midRest == 0) {
-                rest = hours/2;
-                returnString += "and " + rest + " tasks with \"Medium\" priority.";
-                return returnString;
-            }
-
-           // returnString +=", " +  rest + " tasks with \"Medium\" priority";
-            //rest =
-            return "0";
-
-        }*/
+    public static int taskCalc (int total, int taskCounter, int hours) {
+        int taskNo;
+        if (total < taskCounter * hours) {
+            taskNo = total/hours;
+        }
+        else {
+            taskNo = taskCounter;
+        }
+        return taskNo;
     }
 
 
