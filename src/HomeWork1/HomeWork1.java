@@ -29,6 +29,9 @@ public class HomeWork1 {
             }
             break;
         }
+
+        sc.close();
+
         if (side <= 0 || radius <= 0) {
             System.out.println("Wrong or zero data was entered. Previously entered values will be ignored");
             System.out.println("New random values will be generated");
