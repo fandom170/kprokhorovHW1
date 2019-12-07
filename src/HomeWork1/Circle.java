@@ -7,11 +7,11 @@ public class Circle {
             this.radius = radius;
         }
 
-        public double getSquare () {
+    public double getArea() {
                 return Double.parseDouble(Constants.df.format(Constants.pi * Math.pow(radius, 2.0) ));
         }
 
-        public double getPerim() {
+    public double getPerimetr() {
                 return Math.round(Constants.pi * 2 * radius*100d)/100d;
         }
 

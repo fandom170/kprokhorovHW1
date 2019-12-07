@@ -7,15 +7,16 @@ public class Square {
         this.side = side;
     }
 
-    public double getPerim() {
+    public double getPerimetr() {
         return Math.round(4 * side * 100d)/100d;
     }
 
-    public double getSquare() {
+    public double getArea() {
         return Math.round(side * side * 100d)/100d;
     }
 
     public double getSquareSide () {
         return side;
     }
+
 }
