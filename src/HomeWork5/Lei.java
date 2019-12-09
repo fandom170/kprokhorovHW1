@@ -40,20 +40,7 @@ public abstract class Lei {
     public String getColourVaslue(Boolean colour, int i) {
         String colourValue = "bulb colour is ";
         if (colour) {
-            switch (i % 4) {
-                case 0:
-                    colourValue += Colours.colours.RED.toString();
-                    break;
-                case 1:
-                    colourValue += Colours.colours.YELLOW.toString();
-                    break;
-                case 2:
-                    colourValue += Colours.colours.GREEN.toString();
-                    break;
-                default:
-                    colourValue += Colours.colours.BLUE.toString();
-            }
-
+            colourValue += Colours.colors[i % 6];
         } else {
             colourValue = "";
 

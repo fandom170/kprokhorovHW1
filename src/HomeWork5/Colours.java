@@ -1,10 +1,17 @@
 package HomeWork5;
 
 public class Colours {
-    enum colours {
-        RED,
-        YELLOW,
-        GREEN,
-        BLUE
-    }
+
+    public static final String[] colors = {
+            "RED",
+            "GREEN",
+            "YELLOW",
+            "BLUE",
+            "PURPLE",
+            "CYAN",
+            "WHITE",
+            "BLANK"
+
+    };
+
 }
