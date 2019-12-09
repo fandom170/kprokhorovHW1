@@ -14,8 +14,8 @@ public class HomeWork2 {
             System.out.println("Enter end of diapason, please (not included)");
             String end = sc.nextLine();
 
-            startPoint  =Integer.parseInt(start);
-            endPoint  =Integer.parseInt(end);
+            startPoint = Integer.parseInt(start);
+            endPoint = Integer.parseInt(end);
 
             if (endPoint - startPoint < 10) {
                 System.out.println("Value of diapason is not large enough");
