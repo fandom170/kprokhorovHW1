@@ -33,7 +33,7 @@ public class DataValidations {
                 continue;
             }
 
-            if (parameter <= 0) {
+            if (parameter <= 0 && i < 2) {
                 System.out.printf("Wrong, negative or zero value of %s was entered.\n", description);
                 System.out.println("Try again, please.");
                 continue;

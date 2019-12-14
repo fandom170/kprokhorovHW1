@@ -8,11 +8,12 @@ public class Circle {
         }
 
     public double getArea() {
-                return Double.parseDouble(Constants.df.format(Constants.pi * Math.pow(radius, 2.0) ));
+        //return Double.parseDouble(Constants.df.format(Constants.pi * Math.pow(radius, 2.0) ));
+        return Constants.pi * Math.pow(radius, 2.0);
         }
 
     public double getPerimetr() {
-                return Math.round(Constants.pi * 2 * radius*100d)/100d;
+        return Constants.pi * 2 * radius;
         }
 
         public double getRadius () {

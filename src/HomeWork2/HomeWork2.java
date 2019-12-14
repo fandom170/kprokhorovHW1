@@ -11,7 +11,7 @@ public class HomeWork2 {
         while (enter) {
             System.out.println("Enter start of diapason, please");
             String start = sc.nextLine();
-            System.out.println("Enter end of diapason, please (not included)");
+            System.out.println("Enter end of diapason, please");
             String end = sc.nextLine();
 
             startPoint = Integer.parseInt(start);
@@ -25,7 +25,7 @@ public class HomeWork2 {
             enter = false;
         }
 
-        int [] arr = new int [endPoint - startPoint];
+        int[] arr = new int[endPoint + 1 - startPoint];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = startPoint + i;
             if (arr[i]%3 == 0 && arr[i]%5 != 0) {

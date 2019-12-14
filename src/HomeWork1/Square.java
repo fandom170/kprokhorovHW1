@@ -8,11 +8,11 @@ public class Square {
     }
 
     public double getPerimetr() {
-        return Math.round(4 * side * 100d)/100d;
+        return 4 * side;
     }
 
     public double getArea() {
-        return Math.round(side * side * 100d)/100d;
+        return side * side;
     }
 
     public double getSquareSide () {
