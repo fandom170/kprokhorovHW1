@@ -7,40 +7,34 @@ public abstract class Lei {
 
     Date date = new Date();
 
+    public boolean[] getCurrentState() {
+        boolean[] currentLampState = new boolean[lampCount];
+        int minutes = (int) (new Date().getTime() / (60 * 1000));
+        Boolean odd, even;
 
-    public String currentState(boolean colour) {
-        String state = "";
-        Boolean odds = true;
-        String lampStateOdd;
-        String lampStateEven;
-        String colourValue;
-        int multiplier = (int) (date.getTime()) % 10;
-
-
-        if (multiplier % 2 == 0) {
-            lampStateOdd = "Enabled";
-            lampStateEven = "Disabled";
+        if (minutes % 2 == 0) {
+            odd = true;
+            even = false;
         } else {
-            lampStateOdd = "Enabled";
-            lampStateEven = "Disabled";
+            odd = false;
+            even = true;
         }
 
         for (int i = 0; i < lampCount; i++) {
-            colourValue = getColourVaslue(colour, i);
             if (i % 2 == 0) {
-                state += "Lamp No" + i + " " + lampStateOdd + colourValue;
+                currentLampState[i] = odd;
             } else {
-                state += "Lamp No" + i + " " + lampStateEven + colourValue;
+                currentLampState[i] = even;
             }
 
         }
-        return state;
+        return currentLampState;
     }
 
-    public String getColourVaslue(Boolean colour, int i) {
+    public String GetColorValue(Boolean colour, int i) {
         String colourValue = "bulb colour is ";
         if (colour) {
-            colourValue += Colours.colors[i % 6];
+            colourValue += Colours.colors[i % Colours.colors.length];
         } else {
             colourValue = "";
 

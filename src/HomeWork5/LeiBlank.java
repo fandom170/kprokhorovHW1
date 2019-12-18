@@ -1,9 +1,7 @@
 package HomeWork5;
 
-import java.util.Date;
-
 public class LeiBlank extends Lei {
-    private final Boolean colour = false;
+    //private final Boolean colour = false;
     private BulbBlank[] garland;
 
     public LeiBlank(int lampCount) {
@@ -14,42 +12,25 @@ public class LeiBlank extends Lei {
         }
     }
 
-    public String getState() {
-        String state = "";
-        String lampState = "";
-        int minutes = (int) (new Date().getTime() / (60 * 1000));
-        String odd;
-        String even;
+    public void getState() {
+        String state;
         String ansiColor;
-
-        if (minutes % 2 == 0) {
-            odd = "turned off";
-            even = "turned on";
-        } else {
-            odd = "turned on";
-            even = "turned off";
-        }
+        boolean[] lampState = getCurrentState();
 
         for (int i = 0; i < garland.length; i++) {
-            if (garland[i].getNumber() % 2 == 0) {
-                lampState = odd;
+            if (!lampState[i]) {
+                state = " is turned off";
             } else {
-                lampState = even;
+                state = " is turned on";
             }
 
-            if (lampState.equals("turned on")) {
+            if (lampState.equals(true)) {
                 ansiColor = fontColours.ANSI_RESET;
             } else {
                 ansiColor = fontColours.ANSI_BLACK;
             }
-            state += "Blank garland lamp #" + garland[i].getNumber() + " is " + lampState + " now.\n" + ansiColor;
+            System.out.println(ansiColor + "Blank garland lamp #" + garland[i].getNumber() + " is " + state + " now.\n");
         }
-
-        return state;
-
     }
 
-    public Boolean getGarlandType() {
-        return colour;
-    }
 }

@@ -13,7 +13,7 @@ public class BulbColour {
         return bulbColour;
     }
 
-    public int getNumber() {
+    public int getOrderNumber() {
         return orderNo;
     }
 

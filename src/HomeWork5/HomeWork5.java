@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class HomeWork5 {
     public static void main(String[] args) {
         String colour;
-        String leiState;
         String type;
         Scanner sc = new Scanner(System.in);
 
@@ -19,28 +18,20 @@ public class HomeWork5 {
             LeiColour leiColour = new LeiColour(dv.getLeiLength(colour));
             colour = "Blank";
             LeiBlank leiBlank = new LeiBlank(dv.getLeiLength(colour));
-
-            leiState = leiColour.getState();
-            System.out.println(leiState);
-
-            leiState = leiBlank.getState();
-            System.out.println(leiState);
+            leiColour.getState();
+            leiBlank.getState();
 
         } else if (type.equals("blank")) {
             colour = "Blank";
             LeiBlank leiBlank = new LeiBlank(dv.getLeiLength(colour));
-            leiState = leiBlank.getState();
-            System.out.println(leiState);
+            leiBlank.getState();
+
         } else if (type.equals("color")) {
             colour = "Colour";
             LeiColour leiColour = new LeiColour(dv.getLeiLength(colour));
-            leiState = leiColour.getState();
-            System.out.println(leiState);
+            leiColour.getState();
         } else {
             System.exit(1);
         }
-
-
-
     }
 }

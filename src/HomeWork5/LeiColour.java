@@ -1,7 +1,5 @@
 package HomeWork5;
 
-import java.util.Date;
-
 public class LeiColour extends Lei {
     private final Boolean colour = true;
     private BulbColour[] garland;
@@ -15,34 +13,21 @@ public class LeiColour extends Lei {
         }
     }
 
-    public String getState() {
-        String state = "";
+    public void getState() {
         String lampState = "";
-        int minutes = (int) (new Date().getTime() / (60 * 1000));
-        String odd;
-        String even;
         String ansiColor;
-
-        if (minutes % 2 == 0) {
-            odd = "turned off";
-            even = "turned on";
-        } else {
-            odd = "turned on";
-            even = "turned off";
-        }
+        boolean[] currentState = getCurrentState();
 
         for (int i = 0; i < garland.length; i++) {
-            if (garland[i].getNumber() % 2 == 0) {
-                lampState = odd;
+            if (currentState[i]) {
+                lampState = "turned on";
             } else {
-                lampState = even;
+                lampState = "turned off";
             }
             ansiColor = getAnsiColor(i, lampState);
-            state += ansiColor + "Color garland lamp #" + (garland[i].getNumber() + 1) + " is " +
-                    garland[i].getBulbColor() + " and " + lampState + " now.\n";
+            System.out.println(ansiColor + "Color garland lamp #" + (garland[i].getOrderNumber() + 1) + " is " +
+                    garland[i].getBulbColor() + " and " + lampState + " now.\n");
         }
-
-        return state;
     }
 
     public String getAnsiColor(int i, String lampState) {
@@ -71,7 +56,8 @@ public class LeiColour extends Lei {
                     ansiColor = fontColours.ANSI_BRIGHT_BLACK;
             }
         } else {
-            switch (garland[i].getBulbColor()) {
+            ansiColor = fontColours.ANSI_WHITE;
+            /*switch (garland[i].getBulbColor()) {
                 case "RED":
                     ansiColor = fontColours.ANSI_RED;
                     break;
@@ -92,14 +78,11 @@ public class LeiColour extends Lei {
                     break;
                 default:
                     ansiColor = fontColours.ANSI_WHITE;
-            }
+            }*/
         }
 
         return ansiColor;
 
     }
 
-    public Boolean getGarlandType() {
-        return colour;
-    }
 }
