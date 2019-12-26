@@ -1,7 +1,6 @@
 package HomeWork5;
 
 public class LeiColour extends Lei {
-    private final Boolean colour = true;
     private BulbColour[] garland;
 
     public LeiColour(int lampCount) {
@@ -9,24 +8,26 @@ public class LeiColour extends Lei {
         garland = new BulbColour[lampCount];
         for (int i = 0; i < lampCount; i++) {
             String colour = Colours.colors[i % (Colours.colors.length - 1)];
-            garland[i] = new BulbColour(i, colour);
+            garland[i] = new BulbColour(colour);
         }
     }
 
     public void getState() {
         String lampState = "";
         String ansiColor;
-        boolean[] currentState = getCurrentState();
+        boolean minute = getCurrentMinuteState();
 
         for (int i = 0; i < garland.length; i++) {
-            if (currentState[i]) {
-                lampState = "turned on";
+            if (minute) {
+                lampState = i % 2 == 0 ? "turned off" : "turned on";
+                ;
             } else {
-                lampState = "turned off";
+                lampState = i % 2 == 0 ? "turned on" : "turned off";
+                ;
+                ;
             }
             ansiColor = getAnsiColor(i, lampState);
-            System.out.println(ansiColor + "Color garland lamp #" + (garland[i].getOrderNumber() + 1) + " is " +
-                    garland[i].getBulbColor() + " and " + lampState + " now.\n");
+            System.out.printf(ansiColor + "Color garland lamp #%d is %s and %s now.\n", (i + 1), garland[i].getBulbColor(), lampState);
         }
     }
 
