@@ -4,30 +4,28 @@ import java.io.*;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class FileWorks {
+public class DictionaryWorks {
     private String csvPath = "";
     private TreeMap<Integer, Country> fileData = null;
 
-    public FileWorks(String csvPath) {
+    public DictionaryWorks(String csvPath) {
         this.csvPath = csvPath;
-        this.fileData = readFile(csvPath);
+        //this.fileData = readFile();
+        readFile();
     }
 
-    public TreeMap readFile(String csvPath) {
-        TreeMap<Integer, Country> readFileData = new TreeMap<>();
+    public void readFile() {
         BufferedReader csvReader = null;
         String row, separator = ",";
         int orderNumber = 0;
         try {
             csvReader = new BufferedReader(new FileReader(csvPath));
-
             while ((row = csvReader.readLine()) != null) {
                 orderNumber++;
                 String[] rawCountry = row.split(separator);
                 Boolean boolSupport = Boolean.parseBoolean(rawCountry[1]);
-                int support = boolSupport == false ? 0 : 1;
-                Country country = new Country(rawCountry[0], support);
-                readFileData.put(orderNumber, country);
+                Country country = new Country(rawCountry[0], boolSupport);
+                fileData.put(orderNumber, country);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -42,11 +40,9 @@ public class FileWorks {
                 }
             }
         }
-
-        return readFileData;
     }
 
-    public void writeFile(TreeMap<Integer, Country> fileData) {
+    public void writeFile() {
         FileWriter csvWriter = null;
 
         try {
@@ -72,18 +68,35 @@ public class FileWorks {
         }
     }
 
-    public void getFilteredList(int isTelenorSupported, TreeMap<Integer, Country> fileData) {
-        Boolean support = true;
-        if (isTelenorSupported == 0) {
-            support = false;
-        }
+    public void printCountriesByStatus(boolean isTelenorSupported) {
         for (Map.Entry<Integer, Country> entry : fileData.entrySet()) {
             Country tempCountry = entry.getValue();
-            if (tempCountry.getTelenorSupportStatus().equals(support)) {
+            if (tempCountry.getTelenorSupportStatus() == isTelenorSupported) {
                 System.out.printf("Country %s has following status for Telenor support: %b\n", tempCountry.getCountryName(),
                         tempCountry.getTelenorSupportStatus());
             }
         }
     }
+
+    public void updateCountryByName(String countryName, boolean telenorSupport) {
+        for (Map.Entry<Integer, Country> entry : fileData.entrySet()) {
+            Country tempCountry = entry.getValue();
+            if (tempCountry.getCountryName().equals(countryName)) {
+                tempCountry.setIsTelenorSupported(telenorSupport);
+                int orderNo = entry.getKey();
+                fileData.remove(orderNo);
+                fileData.put(orderNo, tempCountry);
+            }
+        }
+    }
+
+    public void addNewCountry(String countryName, boolean telenorSupport) {
+        int newOrderNo = fileData.lastKey() + 1;
+        Country newCountry = new Country(countryName, telenorSupport);
+        fileData.put(newOrderNo, newCountry);
+
+    }
+
+
 
 }

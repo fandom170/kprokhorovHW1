@@ -2,12 +2,12 @@ package HomeWork6;
 
 public class Country {
     private String name;
-    private Boolean isTelenorSupported;
+    private boolean isTelenorSupported;
 
 
-    public Country(String name, int telenorSupported) {
+    public Country(String name, boolean telenorSupported) {
         this.name = name;
-        this.isTelenorSupported = telenorSupported > 0 ? true : false;
+        this.isTelenorSupported = telenorSupported;
     }
 
     public String getCountryName() {
@@ -18,13 +18,7 @@ public class Country {
         return isTelenorSupported;
     }
 
-    public void setIsTelenorSupported(int telenor) {
-        if (telenor > 0) {
-            isTelenorSupported = true;
-        } else {
-            isTelenorSupported = false;
-        }
-
+    public void setIsTelenorSupported(boolean telenor) {
+        isTelenorSupported = telenor;
     }
-
 }

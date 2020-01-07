@@ -9,16 +9,15 @@ public class Homework6 {
         String filePath = "D:\\IdeaProjects\\AutomationTEAM\\src\\HomeWork6\\new.csv";
         String countryForUpdate = "Denmark";
         String country = "Ukraine";
-        FileWorks fw = new FileWorks(filePath);
-        DataUpdate du = new DataUpdate();
-        int telenorSupport = 1;
-        fileData = fw.readFile(filePath);
-        int newNumber = fileData.size() + 1;
-        Country newCountry = new Country(country, telenorSupport);
-        fileData.put(newNumber, newCountry);
-        fw.getFilteredList(telenorSupport, fileData);
-        du.countryUpdate(telenorSupport, countryForUpdate, fileData);
-        fw.writeFile(fileData);
+        DictionaryWorks fw = new DictionaryWorks(filePath);
+        boolean telenorSupport = true;
+        boolean newTelenorStatus = true;
+        boolean telenorSupportForNewCountry = false;
+
+        fw.printCountriesByStatus(telenorSupport);
+        fw.updateCountryByName(countryForUpdate, newTelenorStatus);
+        fw.addNewCountry(country, telenorSupportForNewCountry);
+        fw.writeFile();
 
 
     }
