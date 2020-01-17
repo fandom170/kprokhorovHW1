@@ -1,25 +1,22 @@
 package HomeWork6;
 
-import java.util.TreeMap;
-
 public class Homework6 {
     public static void main(String[] args) {
 
-        TreeMap<Integer, Country> fileData;
-        String filePath = "D:\\IdeaProjects\\AutomationTEAM\\src\\HomeWork6\\new.csv";
-        String countryForUpdate = "Denmark";
-        String country = "Ukraine";
-        DictionaryWorks fw = new DictionaryWorks(filePath);
+        String filePath = "src/HomeWork6/CountriesList.csv";
+        String country1ForUpdate = "Denmark";
+        String country2ForUpdate = "Hungary";
+        String newCountry = "Ukraine";
+        Helpers fw = new Helpers(filePath);
         boolean telenorSupport = true;
         boolean newTelenorStatus = true;
         boolean telenorSupportForNewCountry = false;
 
         fw.printCountriesByStatus(telenorSupport);
-        fw.updateCountryByName(countryForUpdate, newTelenorStatus);
-        fw.addNewCountry(country, telenorSupportForNewCountry);
+        fw.updateCountryByName(country1ForUpdate, newTelenorStatus);
+        fw.updateCountryByName(country2ForUpdate, newTelenorStatus);
+        fw.addNewCountry(newCountry, telenorSupportForNewCountry);
+        fw.printCountriesByStatus(false);
         fw.writeFile();
-
-
     }
-
 }

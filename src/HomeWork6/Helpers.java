@@ -4,13 +4,13 @@ import java.io.*;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class DictionaryWorks {
-    private String csvPath = "";
+public class Helpers {
+    private String csvPath;
     private TreeMap<Integer, Country> fileData = null;
 
-    public DictionaryWorks(String csvPath) {
+    public Helpers(String csvPath) {
         this.csvPath = csvPath;
-        //this.fileData = readFile();
+        fileData = new TreeMap<>();
         readFile();
     }
 
@@ -21,6 +21,9 @@ public class DictionaryWorks {
         try {
             csvReader = new BufferedReader(new FileReader(csvPath));
             while ((row = csvReader.readLine()) != null) {
+                if (row.equals("") || row.equals(" ")) {
+                    break;
+                }
                 orderNumber++;
                 String[] rawCountry = row.split(separator);
                 Boolean boolSupport = Boolean.parseBoolean(rawCountry[1]);
@@ -31,6 +34,10 @@ public class DictionaryWorks {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+            System.out.println("Wrong data in source file.");
+            System.exit(-1);
         } finally {
             if (csvReader != null) {
                 try {
@@ -84,8 +91,7 @@ public class DictionaryWorks {
             if (tempCountry.getCountryName().equals(countryName)) {
                 tempCountry.setIsTelenorSupported(telenorSupport);
                 int orderNo = entry.getKey();
-                fileData.remove(orderNo);
-                fileData.put(orderNo, tempCountry);
+                fileData.replace(orderNo, tempCountry);
             }
         }
     }
@@ -94,9 +100,5 @@ public class DictionaryWorks {
         int newOrderNo = fileData.lastKey() + 1;
         Country newCountry = new Country(countryName, telenorSupport);
         fileData.put(newOrderNo, newCountry);
-
     }
-
-
-
 }
