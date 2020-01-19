@@ -8,9 +8,13 @@ public class DataValidation {
     Scanner sc = new Scanner(System.in);
 
     public static int taskCalc(int total, int taskCounter, int hours) {
-        int taskNo;
+        int taskNo = 0;
         if (total < taskCounter * hours) {
-            taskNo = total / hours;
+            try {
+                taskNo = total / hours;
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
         } else {
             taskNo = taskCounter;
         }
@@ -32,7 +36,7 @@ public class DataValidation {
                 break;
             }
 
-            System.out.println("Enter task priority, please");
+            System.out.println("Enter task priority, please. Task priority should be \"High\", \"Medium\" or \"Low\".");
             System.out.println("enter STOP instead of task priority to stop entering of tasks");
             priority = sc.nextLine();
             priority = priority.trim().toLowerCase();
@@ -66,7 +70,6 @@ public class DataValidation {
         String priority = "";
         String extra = sc.nextLine();
         extra = extra.trim().toLowerCase();
-        String days;
         int counter = 0;
         if (extra.equals("y")) {
             System.out.println("Please choose desired priority. If you want to skip, enter any value except priority. \n" +
@@ -82,6 +85,7 @@ public class DataValidation {
         if (priority.equals("high") || priority.equals("medium") || priority.equals("low")) {
             for (Task entry : taskList) {
                 if (entry.getTaskPriority().equals(priority)) {
+                    System.out.printf("Task name is \"%s\"\n", entry.getTaskName());
                     counter++;
                 }
             }
@@ -93,16 +97,15 @@ public class DataValidation {
 
     public void daysAmountCalculation(List<Task> taskList) {
         String days = sc.nextLine();
-        String desiredPriority;
         int hours = 0;
         try {
             hours = Integer.parseInt(days) * 24;
         } catch (NumberFormatException ex) {
             ex.printStackTrace();
+            System.out.println("Incorrect value was entered. Program will finish work");
+            System.exit(0);
         }
-
         taskCheck(hours, taskList);
-
     }
 
     public void taskCheck(int hours, List<Task> taskList) {
@@ -129,16 +132,13 @@ public class DataValidation {
         } else {
             rest = taskCalc(hours, highCounter, 4);
             returnString = "Desired period allows to execute " + rest + "tasks with \"High\" priority " +
-                    "(from" + highCounter + "according to scgedule)";
+                    "(from" + highCounter + "according to schedule)";
             hours -= highCounter * 4;
-            if (hours == 0) {
-            }
+
             rest = taskCalc(hours, medCounter, 2);
             returnString += ",\n " + rest + "tasks with \"Medium\" priority (from" + medCounter + "according to scgedule)";
-            hours -= medCounter * 2;
-            if (hours == 0) {
 
-            }
+            hours -= medCounter * 2;
             returnString += " and " + hours + " tasks with \"Low\" priority";
         }
         System.out.println(returnString);
