@@ -2,16 +2,20 @@ package HomeWork4;
 
 public class Task {
     private String name;
-    private String priority;
+    private Priority priority;
     private int duration;
+    private Complexity complexity;
 
-    public Task(String Name, String priority) {
+    public Task(String Name,
+                Priority priority,
+                Complexity complexity) {
         this.name = Name;
         this.priority = priority;
+        this.complexity = complexity;
 
-        if (priority.equals("high")) {
+        if (complexity.equals(Complexity.DIFFICULT)) {
             this.duration = 4;
-        } else if (priority.equals("medium")) {
+        } else if (complexity.equals(Complexity.MEDIUM)) {
             this.duration = 2;
         } else {
             this.duration = 1;
@@ -23,7 +27,11 @@ public class Task {
     }
 
     public String getTaskPriority() {
-        return priority;
+        return priority.toString();
+    }
+
+    public String getTaskComplexity() {
+        return complexity.toString();
     }
 
     public int getTaskDuration() {
