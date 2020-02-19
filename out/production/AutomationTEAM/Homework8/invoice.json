@@ -1,0 +1,19 @@
+{
+  "shipments" : [
+    {
+      "shipmentId": "Init1600",
+      "shipmentAddress": "1600_Pennsylvania_Avenue",
+      "shipmentName": "Init_Data_01",
+      "ordersList": [
+        {
+          "orderId": 0,
+          "productType": "Bomb",
+          "productQuantity": 10,
+          "customer": {
+            "customerName": "test",
+            "customerId": "9e7199f2-1c0e-487c-a7a8-b9c4601e455a"
+          }
+        }
+      ]
+    }]
+}
