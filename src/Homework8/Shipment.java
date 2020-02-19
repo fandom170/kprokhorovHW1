@@ -5,14 +5,11 @@ import java.util.List;
 public class Shipment {
     private String shipmentId;
     private String shipmentAddress;
-    private List<Order> orderList;
+    private String shipmentName;
+    private List<Order> ordersList;
 
-    public Shipment() {
-        //orderList = new List <Order>();
-    }
-
-    public List<Order> getOrderList() {
-        return orderList;
+    public List<Order> getOrdersList() {
+        return ordersList;
     }
 
     public String getShipmentAddress() {
@@ -22,4 +19,25 @@ public class Shipment {
     public String getShipmentId() {
         return shipmentId;
     }
+
+    public void setOrdersList(List<Order> listOfOrders) {
+        ordersList = listOfOrders;
+    }
+
+    public void setShipmentAddress(String address) {
+        shipmentAddress = address;
+    }
+
+    public void setShipmentId(String currentShipmentId) {
+        shipmentId = currentShipmentId;
+    }
+
+    public String getShipmentName() {
+        return shipmentName;
+    }
+
+    public void setShipmentName() {
+        shipmentName = shipmentAddress.substring(0, 3) + shipmentId.substring(0, 1);
+    }
+
 }

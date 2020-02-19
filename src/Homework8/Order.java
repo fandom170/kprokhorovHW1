@@ -2,28 +2,28 @@ package Homework8;
 
 public class Order {
     private int orderId;
-    private String goodType;
-    private int quantity;
+    private String productType;
+    private int productQuantity;
     private Customer customer;
 
     public Order() {
         this.orderId = _helpers.OrderNo++;
     }
 
-    public String getGoodType() {
-        return goodType;
+    public String getProductType() {
+        return productType;
     }
 
-    public void setGoodType(String type) {
-        goodType = type;
+    public void setProductType(String type) {
+        productType = type;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getProductQuantity() {
+        return productQuantity;
     }
 
     public void setQuantiuty(int qty) {
-        quantity = qty;
+        productQuantity = qty;
     }
 
     public Customer getCustomer() {

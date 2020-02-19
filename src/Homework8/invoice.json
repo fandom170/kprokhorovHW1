@@ -1,0 +1,45 @@
+{
+  "shipments": [
+    {
+      "shipmentId": "Init1600",
+      "shipmentAddress": "1600_Pennsylvania_Avenue",
+      "shipmentName": "Init_Data_01",
+      "ordersList": [
+        {
+          "orderId": 0,
+          "productType": "Bomb",
+          "productQuantity": 10,
+          "customer": {
+            "customerId": "9e7199f2-1c0e-487c-a7a8-b9c4601e455a",
+            "customerName": "test"
+          }
+        }
+      ]
+    },
+    {
+      "shipmentId": "shipment2",
+      "shipmentAddress": "Pensilvania av. 1603",
+      "shipmentName": "Pens",
+      "ordersList": [
+        {
+          "orderId": 0,
+          "productType": "GoodType1",
+          "productQuantity": 10,
+          "customer": {
+            "customerId": "10aa0feb-ae9d-4aae-8a20-b90b8e01f16d",
+            "customerName": "Customer1"
+          }
+        },
+        {
+          "orderId": 1,
+          "productType": "GoodType2",
+          "productQuantity": 11,
+          "customer": {
+            "customerId": "7c397774-2872-4e38-ac4c-9a8e3651ff9a",
+            "customerName": "Customer2"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -3,13 +3,14 @@ package Homework8;
 import java.util.List;
 
 public class Invoice {
-    private List<Shipment> shipmentList;
+    private List<Shipment> shipments;
 
-    public List<Shipment> getShipmentList() {
-        return shipmentList;
+    //public Invoice () {}
+    public List<Shipment> getShipments() {
+        return shipments;
     }
 
     public void setShipmentList(List<Shipment> shipList) {
-        shipmentList.addAll(shipList);
+        shipments = shipList;
     }
 }

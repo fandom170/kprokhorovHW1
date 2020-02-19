@@ -1,24 +1,33 @@
 package Homework8;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.UUID;
 
 public class Customer {
-    private UUID uuid;
+    private UUID customerId;
     private String customerName;
 
-    public Customer(String name) {
-        this.customerName = name;
-        this.uuid = UUID.randomUUID();
+    public UUID getCustomerId() {
+        return customerId;
     }
 
-    public UUID getCustomerId() {
-        return uuid;
+
+    public void setCustomerId(UUID id) {
+        customerId = id;
     }
 
     public String getCustomerName() {
         return customerName;
     }
 
+    public void setCustomerName(String custName) {
+        customerName = custName;
+    }
 
-    //String randomUUIDString = uuid.toString();
+    @JsonIgnore
+    public void setCustomerUUID() {
+        customerId = UUID.randomUUID();
+    }
+
 }
